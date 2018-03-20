@@ -522,7 +522,7 @@ void PVD_IRQHandler(void) {
     IRQ_EXIT(PVD_IRQn);
 }
 
-#if defined(MCU_SERIES_L4)
+#if defined(STM32L4)
 void PVD_PVM_IRQHandler(void) {
     IRQ_ENTER(PVD_PVM_IRQn);
     Handle_EXTI_Irq(EXTI_PVD_OUTPUT);
@@ -563,7 +563,7 @@ void TIM1_BRK_TIM9_IRQHandler(void) {
     IRQ_EXIT(TIM1_BRK_TIM9_IRQn);
 }
 
-#if defined(MCU_SERIES_L4)
+#if defined(STM32L4)
 void TIM1_BRK_TIM15_IRQHandler(void) {
     IRQ_ENTER(TIM1_BRK_TIM15_IRQn);
     timer_irq_handler(15);
@@ -578,7 +578,7 @@ void TIM1_UP_TIM10_IRQHandler(void) {
     IRQ_EXIT(TIM1_UP_TIM10_IRQn);
 }
 
-#if defined(MCU_SERIES_L4)
+#if defined(STM32L4)
 void TIM1_UP_TIM16_IRQHandler(void) {
     IRQ_ENTER(TIM1_UP_TIM16_IRQn);
     timer_irq_handler(1);
@@ -593,7 +593,7 @@ void TIM1_TRG_COM_TIM11_IRQHandler(void) {
     IRQ_EXIT(TIM1_TRG_COM_TIM11_IRQn);
 }
 
-#if defined(MCU_SERIES_L4)
+#if defined(STM32L4)
 void TIM1_TRG_COM_TIM17_IRQHandler(void) {
     IRQ_ENTER(TIM1_TRG_COM_TIM17_IRQn);
     timer_irq_handler(17);
@@ -662,7 +662,7 @@ void TIM8_UP_TIM13_IRQHandler(void) {
     IRQ_EXIT(TIM8_UP_TIM13_IRQn);
 }
 
-#if defined(MCU_SERIES_L4)
+#if defined(STM32L4)
 void TIM8_UP_IRQHandler(void) {
     IRQ_ENTER(TIM8_UP_IRQn);
     timer_irq_handler(8);
@@ -749,6 +749,12 @@ void CAN1_RX1_IRQHandler(void) {
     IRQ_EXIT(CAN1_RX1_IRQn);
 }
 
+void CAN1_SCE_IRQHandler(void) {
+    IRQ_ENTER(CAN1_SCE_IRQn);
+    can_sce_irq_handler(PYB_CAN_1);
+    IRQ_EXIT(CAN1_SCE_IRQn);
+}
+
 void CAN2_RX0_IRQHandler(void) {
     IRQ_ENTER(CAN2_RX0_IRQn);
     can_rx_irq_handler(PYB_CAN_2, CAN_FIFO0);
@@ -759,6 +765,12 @@ void CAN2_RX1_IRQHandler(void) {
     IRQ_ENTER(CAN2_RX1_IRQn);
     can_rx_irq_handler(PYB_CAN_2, CAN_FIFO1);
     IRQ_EXIT(CAN2_RX1_IRQn);
+}
+
+void CAN2_SCE_IRQHandler(void) {
+    IRQ_ENTER(CAN2_SCE_IRQn);
+    can_sce_irq_handler(PYB_CAN_2);
+    IRQ_EXIT(CAN2_SCE_IRQn);
 }
 #endif // MICROPY_HW_ENABLE_CAN
 
